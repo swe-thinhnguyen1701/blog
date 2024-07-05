@@ -23,12 +23,18 @@ body{
     margin: 0 auto;
 }
 
-h1, p{
+h1,h3, p{
     margin: 0;
 }
 
 h1{
     font-size: 3rem;
+}
+
+h3{
+    font-size: 2rem;
+    margin-bottom: 5px;
+    color: var(--black-color);
 }
 
 /* LIST */
@@ -56,6 +62,13 @@ h1{
 
 .link:hover{
     text-decoration: underline;
+}
+
+/* BUTTON */
+.btn{
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1.8rem;
 }
 
 /* NAVIGATION */
@@ -138,6 +151,7 @@ section{
 /* POSTER */
 .poster-container{
     border: solid 1px var(--primary-color);
+    margin-bottom: 20px;
 }
 
 .poster-container:hover{
@@ -190,5 +204,47 @@ section{
 
     .poster__title{
         font-size: 2.5rem;
+    }
+}
+
+/* COMMENT */
+.comment-container{
+    border: solid 1px var(--primary-color);
+    border-radius: 20px;
+    padding: 20px 10px;
+    margin-bottom: 20px;
+}
+
+.comment-container:last-child{
+    margin: 0;
+}
+
+.comment__content{
+    margin-bottom: 30px;
+}
+
+.from-group label{
+    font-size: 1.5rem;
+}
+
+.comment-area{
+    resize: none;
+    width: 100%;
+    height: 90px;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 0;
+    margin-top: 5px;
+}
+
+@media screen and (min-width: 768px){
+    .comment-container, .comment__conten{
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (min-width: 1024px){
+    .comment-container, .comment__conten{
+        font-size: 1.5rem;
     }
 }
