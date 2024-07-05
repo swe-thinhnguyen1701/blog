@@ -28,11 +28,20 @@ User.init(
         }
     },
     {
-        sequelize,
         hooks: {
-            beforeCreate: {
+            beforeCreate: async (newUserData) => {
+                isUserExist = await User.findOne({where: {userName: newUserData.userName}});
+                if(isUserExist !== null) {
+                    throw new Error("User with this username already exists");
+                }
 
-            }
-        }
+                newUserData.password = await bcrypt.hash(newUserData.password, 10);
+            },
+        },
+        sequelize,
+        freezeTableName: true,
+        underscored: true,
+        timestamps: false,
+        model: "user"
     }
 )
