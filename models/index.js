@@ -25,4 +25,8 @@ Poster.hasMany(Comment, {
     onDelete: "CASCADE"
 });
 
+Poster.hasOne(User, {
+    foreignKey: "user_id"
+});
+
 module.exports = { Poster, Comment, User };

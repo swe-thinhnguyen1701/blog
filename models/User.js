@@ -12,7 +12,7 @@ User.init(
             autoIncrement: true,
             primaryKey: true
         },
-        userName: {
+        user_name: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -30,7 +30,7 @@ User.init(
     {
         hooks: {
             beforeCreate: async (newUserData) => {
-                isUserExist = await User.findOne({where: {userName: newUserData.userName}});
+                isUserExist = await User.findOne({where: {user_name: newUserData.user_name}});
                 if(isUserExist !== null) {
                     throw new Error("User with this username already exists");
                 }
