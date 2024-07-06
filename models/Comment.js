@@ -28,6 +28,13 @@ Comment.init(
                 id: "key"
             }
         }
+    },
+    {
+        sequelize,
+        underscored: true,
+        timestamps: false,
+        freezeTableName: true,
+        model: "comment"
     }
 )
 
