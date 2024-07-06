@@ -25,7 +25,7 @@ Poster.hasMany(Comment, {
     onDelete: "CASCADE"
 });
 
-Poster.hasOne(User, {
+Poster.belongsTo(User, {
     foreignKey: "user_id"
 });
 
