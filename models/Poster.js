@@ -32,7 +32,7 @@ Poster.init(
         timestamps: false,
         underscored: true,
         freezeTableName: true,
-        model: "poster"
+        modelName: "poster"
     }   
 )
 

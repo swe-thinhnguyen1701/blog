@@ -4,15 +4,25 @@ const seedPoster = require("./posterData");
 const seedComment = require("./commentData");
 
 const seedAll = async () => {
-    await sequelize.sync({ force: true});
+    try {
+        console.log("Starting database synchronization...");
+        await sequelize.sync({ force: true });
+        console.log("Database synced\n\n");
 
-    await seedUser();
+        await seedUser();
+        console.log("User synced\n\n");
 
-    await seedPoster();
+        await seedPoster();
+        console.log("Poster synced\n\n");
 
-    await seedComment();
+        await seedComment();
+        console.log("Comment synced\n\n");
 
-    process.exit(0);
+        process.exit(0);
+    }catch(error){
+        console.error("Fail to seed data: \n\n", error);
+        process.exit(1);
+    }
 }
 
 seedAll();

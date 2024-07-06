@@ -9,8 +9,10 @@ const userData = [
         userName: "Ngoc",
         password: "123456"
     }
-]
+];
 
-const seedUser = () => User.bulkCreate(userData);
+const seedUser = () => User.bulkCreate(userData, {
+    individualHooks: true
+});
 
 module.exports = seedUser;
