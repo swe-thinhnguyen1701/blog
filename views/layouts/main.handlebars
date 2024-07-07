@@ -12,10 +12,13 @@
     <header>
         <nav>
             <ul class="list">
-                <li class="list-item"><a href="#" class="link">Home</a></li>
+                <li class="list-item"><a href="/" class="link">Home</a></li>
                 <li class="list-item"><a href="#" class="link">Dashboard</a></li>
-                <li class="list-item"><a href="#" class="link">Login</a></li>
-                <li class="list-item"><a href="#" class="link">Logout</a></li>
+                {{#unless loggedIn}}
+                    <li class="list-item"><a href="/login" class="link">Login</a></li>
+                {{else}}
+                    <li class="list-item"><button class="btn btn--logout" id="logout-btn">Logout</button></li>
+                {{/unless}}
             </ul>
         </nav>
         <div class="title-container">
@@ -25,6 +28,9 @@
     <main>
         {{{body}}}
     </main>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="/js/index.js"></script>
 </body>
 
 </html>
