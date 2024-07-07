@@ -1,0 +1,25 @@
+<section>
+    {{#if loggedIn}}
+    <form>
+        <div class="section-container">
+            <div class="section-header">
+                <span>Create New Post</span>
+            </div>
+            <div class="section-body">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="new-poster-title" name="title" class="input">
+                </div>
+                <div class="form-group">
+                    <label for="content">Content</label>
+                    <textarea name="content" id="new-poster-content"></textarea>
+                </div>
+                <button class="btn">Create</button>
+            </div>
+        </div>
+    </form>
+    <div class="btn-container">
+        <button class="btn btn--add">+ New Post</button>
+    </div>
+    {{/if}}
+</section>
