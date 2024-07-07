@@ -2,7 +2,11 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 const bcrypt = require("bcrypt");
 
-class User extends Model {}
+class User extends Model {
+    isPasswordMatched(password) {
+        return bcrypt.compareSync(password, this.password);
+    }
+}
 
 User.init(
     {
@@ -30,13 +34,7 @@ User.init(
     {
         hooks: {
             beforeCreate: async (newUserData) => {
-                isUserExist = await User.findOne({where: {user_name: newUserData.user_name}});
-                if(isUserExist !== null) {
-                    throw new Error("User with this username already exists");
-                }
-
                 newUserData.password = await bcrypt.hash(newUserData.password, 10);
-
                 return newUserData;
             },
         },
