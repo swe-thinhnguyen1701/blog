@@ -1,6 +1,6 @@
 <section>
     {{#if loggedIn}}
-    <form>
+    <form id="post-form">
         <div class="section-container">
             <div class="section-header">
                 <span>Create New Post</span>
@@ -14,14 +14,14 @@
                     <label for="content">Content</label>
                     <textarea name="content" id="new-poster-content"></textarea>
                 </div>
-                <button class="btn">Create</button>
+                <button class="btn" type="submit">Create</button>
             </div>
         </div>
     </form>
     <div class="btn-container">
-        <button class="btn btn--add">+ New Post</button>
+        <button class="btn btn--add" id="addNewPostBtn">+ New Post</button>
     </div>
     {{else}}
-    <h2>Please <a href="/login" class="link">log in</a> your account to review your posts</h2>
+    <h2>Please <a href="/login" class="link">log in</a> to modify your posts</h2>
     {{/if}}
 </section>

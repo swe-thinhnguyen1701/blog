@@ -125,6 +125,11 @@ textarea{
     margin-top: 5px;
 }
 
+/* POSTER FORM */
+#post-form {
+    display: none;
+}
+
 /* NAVIGATION */
 header{
     background-color: var(--primary-color);

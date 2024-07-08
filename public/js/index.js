@@ -1,9 +1,10 @@
 const logoutBtn = $("#logout-btn");
-// const loginBtn = $("#login-btn");
-const loginForm = $("#login-form");
 const signUpBtn = $("#signup-btn");
+const loginForm = $("#login-form");
+const postForm = $("#post-form");
 const userNameInput = $("#usernameInput");
 const passwordInput = $("#passwordInput");
+const newPostBtn = $("#addNewPostBtn");
 
 const logout = async () => {
     try {
@@ -48,5 +49,16 @@ const login = async (event) => {
     }
 }
 
+const showNewPost = () => {
+    if (postForm.is(":hidden")) {
+        postForm.show();
+        newPostBtn.text("Close");
+    } else {
+        postForm.hide();
+        newPostBtn.text("+ New Post");
+    }
+}
+
 logoutBtn.on("click", logout);
 loginForm.on("submit", login);
+newPostBtn.on("click", showNewPost);
