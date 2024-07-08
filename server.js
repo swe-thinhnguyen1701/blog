@@ -24,7 +24,7 @@ app.use(session(sess));
 app.use((req, res, next) => {
     if(req.session.loggedIn === undefined)
         req.session.loggedIn = false;
-    console.log("req.session.loggedIn :>> ", req.session.loggedIn);
+    // console.log("req.session.loggedIn :>> ", req.session.loggedIn);
     next();
 })
 

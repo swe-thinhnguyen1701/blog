@@ -19,16 +19,15 @@ router.get("/login", async (req, res) => {
         res.render("/");
         return;
     }
-    res.render("login", {isDashboard: false});
+    res.render("login", { isDashboard: false });
 })
 
 router.get("/signup", (req, res) => {
-    res.render("signup", {isDashboard: false});
+    res.render("signup", { isDashboard: false });
 });
 
 router.get("/dashboard", (req, res) => {
-    if(!req.session.loggedIn)
-        res.render("dashboard", {loggedIn: req.session.loggedIn, isDashboard: true});
+    res.render("dashboard", { loggedIn: req.session.loggedIn, isDashboard: true });
 })
 
 module.exports = router;

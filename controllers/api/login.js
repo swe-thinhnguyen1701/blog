@@ -1,9 +1,13 @@
 const router = require("express").Router();
 const { User } = require("../../models");
 
-router.post("/", async (req, res) => {
+router.post("/login", async (req, res) => {
     try {
-        const user = await User.findOne({ where: { user_name: req.body.user_name } });
+        console.log("BACKEND");
+        console.log("userName :>>", req.body.username);
+        console.log("pasword :>>", req.body.password);
+        const user = await User.findOne({ where: { user_name: req.body.username } });
+        console.log(user);
         if (!user || !user.isPasswordMatched(req.body.password)) {
             res.status(400).json({ message: "Incorrect username or password. Please try again" });
             return;
