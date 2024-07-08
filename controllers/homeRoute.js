@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const auth = require("./middleware/auth");
 const { Poster, User } = require("../models");
 
 router.get("/", async (req, res) => {
@@ -26,7 +27,12 @@ router.get("/signup", (req, res) => {
     res.render("signup", { isDashboard: false });
 });
 
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", auth, async (req, res) => {
+    const user_id = req.session.user_id;
+    const userData = await User.findOne({where: {id: user_id}, include: [{model: Poster}]});
+    const postList = userData.posters.map(post => post.get({plain: true}));
+    // const userPost = userPostData.map(post => post.get({plain: true}));
+    console.log("postList :>>", postList);
     res.render("dashboard", { loggedIn: req.session.loggedIn, isDashboard: true });
 })
 

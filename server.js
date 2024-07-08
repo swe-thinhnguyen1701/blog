@@ -34,10 +34,10 @@ app.set("view engine", "handlebars");
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname,"public")));
-app.use((req, res, next) => {
-    console.log('Session:', req.session);
-    next();
-});
+// app.use((req, res, next) => {
+//     console.log('Session:', req.session);
+//     next();
+// });
 
 app.use(routes);
 
