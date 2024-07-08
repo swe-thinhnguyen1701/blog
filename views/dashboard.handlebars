@@ -1,4 +1,7 @@
 <section>
+    {{#each posters as |poster|}}
+    {{> dashboard-details}}
+    {{/each}}
     {{#if loggedIn}}
     <form id="post-form">
         <div class="section-container">

@@ -30,10 +30,10 @@ router.get("/signup", (req, res) => {
 router.get("/dashboard", auth, async (req, res) => {
     const user_id = req.session.user_id;
     const userData = await User.findOne({where: {id: user_id}, include: [{model: Poster}]});
-    const postList = userData.posters.map(post => post.get({plain: true}));
+    const posters = userData.posters.map(post => post.get({plain: true}));
     // const userPost = userPostData.map(post => post.get({plain: true}));
-    console.log("postList :>>", postList);
-    res.render("dashboard", { loggedIn: req.session.loggedIn, isDashboard: true });
+    console.log("postList :>>", posters);
+    res.render("dashboard", { posters, loggedIn: req.session.loggedIn, isDashboard: true });
 })
 
 module.exports = router;
