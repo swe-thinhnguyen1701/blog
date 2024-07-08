@@ -1,10 +1,10 @@
 const logoutBtn = $("#logout-btn");
 const signUpBtn = $("#signup-btn");
+const newPostBtn = $("#add-new-post-btn");
 const loginForm = $("#login-form");
 const postForm = $("#post-form");
 const userNameInput = $("#usernameInput");
 const passwordInput = $("#passwordInput");
-const newPostBtn = $("#addNewPostBtn");
 
 const logout = async () => {
     try {
@@ -49,6 +49,28 @@ const login = async (event) => {
     }
 }
 
+const newPostHandler = async (event) => {
+    try{
+        event.preventDefault();
+
+        const title = $("#new-post-title").val();
+        const content = $("#new-post-content").val();
+        const res = await $.ajax({
+            url: "/api/users/dashboard",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({ title, content})
+        });
+
+        $("#new-post-title").val("");
+        $("#new-post-content").val("");
+
+        if(res) window.location.replace("/dashboard");
+    }catch(error){
+        alert("failed to create a new post");
+    }
+}
+
 const showNewPost = () => {
     if (postForm.is(":hidden")) {
         postForm.show();
@@ -61,4 +83,5 @@ const showNewPost = () => {
 
 logoutBtn.on("click", logout);
 loginForm.on("submit", login);
+postForm.on("submit", newPostHandler);
 newPostBtn.on("click", showNewPost);
