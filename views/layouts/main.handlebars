@@ -13,16 +13,20 @@
         <nav>
             <ul class="list">
                 <li class="list-item"><a href="/" class="link">Home</a></li>
-                <li class="list-item"><a href="#" class="link">Dashboard</a></li>
+                <li class="list-item"><a href="/dashboard" class="link">Dashboard</a></li>
                 {{#unless loggedIn}}
-                    <li class="list-item"><a href="/login" class="link">Login</a></li>
+                <li class="list-item"><a href="/login" class="link">Login</a></li>
                 {{else}}
-                    <li class="list-item"><button class="btn btn--logout" id="logout-btn">Logout</button></li>
+                <li class="list-item"><button class="btn btn--logout" id="logout-btn">Logout</button></li>
                 {{/unless}}
             </ul>
         </nav>
         <div class="title-container">
+            {{#if isDashboard}}
+            <span class="title">Your Dashboard</span>
+            {{else}}
             <span class="title">The Tech Blog</span>
+            {{/if}}
         </div>
     </header>
     <main>

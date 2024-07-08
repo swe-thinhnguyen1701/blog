@@ -1,4 +1,5 @@
 const logoutBtn = $("#logout-btn");
+const signUpBtn = $("#sign-up-btn");
 
 const logout = async () => {
     const res = await $.ajax({
@@ -12,6 +13,10 @@ const logout = async () => {
     }else{
         alert("Failed to log out");
     }
+}
+
+const signUp = async () => {
+
 }
 
 logoutBtn.on("click", logout);
