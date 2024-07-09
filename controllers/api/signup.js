@@ -3,14 +3,14 @@ const {User} = require("../../models");
 
 router.post("/signup", async (req, res) => {
     try {
-        const isUserExist = await User.findOne({ where: { user_name: req.body.user_name } });
+        const isUserExist = await User.findOne({ where: { user_name: req.body.username } });
         if (isUserExist) {
             res.status(400).json({ messge: "User has been used!" });
             return;
         }
 
         const newUser = await User.create({
-            user_name: req.body.user_name,
+            user_name: req.body.username,
             password: req.body.password
         });
 
@@ -24,3 +24,5 @@ router.post("/signup", async (req, res) => {
         res.status(500).json({message: "Internal error, please try again later!"});
     }
 });
+
+module.exports = router;

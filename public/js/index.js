@@ -3,6 +3,7 @@ const signUpBtn = $("#signup-btn");
 const newPostBtn = $("#add-new-post-btn");
 const loginForm = $("#login-form");
 const postForm = $("#post-form");
+const signupForm = $("#signup-form");
 const userNameInput = $("#usernameInput");
 const passwordInput = $("#passwordInput");
 
@@ -71,6 +72,27 @@ const newPostHandler = async (event) => {
     }
 }
 
+const signupHandler = async (event) => {
+    try{
+        event.preventDefault();
+        
+        const username = userNameInput.val();
+        const password = passwordInput.val();
+        const res = await $.ajax({
+            url: "/api/users/signup",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({ username, password})
+        });
+        userNameInput.val("");
+        passwordInput.val("");
+
+        if(res) window.location.replace("/");
+    }catch(error){
+        alert("Sign Up Failed!");
+    }
+}
+
 const showNewPost = () => {
     if (postForm.is(":hidden")) {
         postForm.show();
@@ -84,4 +106,5 @@ const showNewPost = () => {
 logoutBtn.on("click", logout);
 loginForm.on("submit", login);
 postForm.on("submit", newPostHandler);
+signupForm.on("submit", signupHandler);
 newPostBtn.on("click", showNewPost);

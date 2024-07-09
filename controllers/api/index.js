@@ -8,5 +8,6 @@ const signupRoutes = require("./signup");
 router.use("/users", loginRoutes);
 router.use("/users", logoutRoutes);
 router.use("/users", dashboardRoutes);
+router.use("/users", signupRoutes);
 
 module.exports = router;
