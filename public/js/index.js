@@ -144,3 +144,4 @@ deletePostBtn.on("click", deletePostHandler);
 loginForm.on("submit", login);
 postForm.on("submit", newPostHandler);
 signupForm.on("submit", signupHandler);
+editForm.on("submit", editPostHandler);

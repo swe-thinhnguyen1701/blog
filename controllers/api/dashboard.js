@@ -13,6 +13,16 @@ router.delete("/dashboard/post/:id", async (req, res) => {
     }
 });
 
+router.put("/dashboard/post/:id", async (req, res) => {
+    await Poster.update(
+        { 
+            title: req.body.title, 
+            content: req.body.content 
+        }, 
+        { where: { id: req.params.id } });
+
+});
+
 router.post("/dashboard", async (req, res) => {
     try {
         console.log("req.bodt.title :>>", req.body.title);

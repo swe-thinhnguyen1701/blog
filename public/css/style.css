@@ -64,6 +64,10 @@ h3{
     text-decoration: underline;
 }
 
+.post-editor-link{
+    text-decoration: none;   
+}
+
 /* BUTTON */
 .btn{
     width: 100%;
@@ -97,6 +101,7 @@ h3{
 .btn-container{
     display: flex;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 /* FORM */
