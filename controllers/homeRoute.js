@@ -34,6 +34,21 @@ router.get("/dashboard", auth, async (req, res) => {
     // const userPost = userPostData.map(post => post.get({plain: true}));
     console.log("postList :>>", posters);
     res.render("dashboard", { posters, loggedIn: req.session.loggedIn, isDashboard: true });
-})
+});
+
+router.get("/dashboard/post/:id", async (req, res) => {
+    try {
+        const postData = await Poster.findByPk(req.params.id);
+        if (!postData) {
+            res.status(404).json({ message: "Cannot find post with given id\n" });
+            return;
+        }
+        const post = postData.get({ plain: true });
+        res.render("post-editor", post);
+    } catch (error) {
+        console.error("ERROR occurs while fetching data from dashboard/post/:id\n", error);
+        res.send(500).json({ message: "Internal error occurs, please try again later" });
+    }
+});
 
 module.exports = router;
