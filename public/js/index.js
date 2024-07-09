@@ -1,9 +1,11 @@
 const logoutBtn = $("#logout-btn");
 const signUpBtn = $("#signup-btn");
 const newPostBtn = $("#add-new-post-btn");
+const deletePostBtn = $("#delete-post-btn");
 const loginForm = $("#login-form");
 const postForm = $("#post-form");
 const signupForm = $("#signup-form");
+const editForm = $("#edit-form");
 const userNameInput = $("#usernameInput");
 const passwordInput = $("#passwordInput");
 
@@ -72,6 +74,24 @@ const newPostHandler = async (event) => {
     }
 }
 
+const editPostHandler = async (event) => {
+    try{
+        event.preventDefault();
+
+        const postId = editForm.data("postId");
+        const title = $("#new-post-title").val();
+        const content = $("#new-post-content").val();
+        const res = await $.ajax({
+            url: `/dashboard/post/${postId}`,
+            method: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify({title, content})
+        });
+    }catch(error){
+
+    }
+}
+
 const signupHandler = async (event) => {
     try{
         event.preventDefault();
@@ -93,6 +113,21 @@ const signupHandler = async (event) => {
     }
 }
 
+const deletePostHandler = async () => {
+    try{
+        const postId = editForm.data("postId");
+        const res = await $.ajax({
+            url: `/api/users/dashboard/post/${postId}`,
+            method: "DELETE",
+            contentType: "application/json"
+        });
+
+        if(res) window.location.replace("/dashboard");
+    }catch(error) {
+        alert("Fail to delete");
+    }
+}
+
 const showNewPost = () => {
     if (postForm.is(":hidden")) {
         postForm.show();
@@ -104,7 +139,8 @@ const showNewPost = () => {
 }
 
 logoutBtn.on("click", logout);
+newPostBtn.on("click", showNewPost);
+deletePostBtn.on("click", deletePostHandler);
 loginForm.on("submit", login);
 postForm.on("submit", newPostHandler);
 signupForm.on("submit", signupHandler);
-newPostBtn.on("click", showNewPost);
