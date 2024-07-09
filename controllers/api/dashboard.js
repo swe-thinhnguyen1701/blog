@@ -14,12 +14,18 @@ router.delete("/dashboard/post/:id", async (req, res) => {
 });
 
 router.put("/dashboard/post/:id", async (req, res) => {
-    await Poster.update(
-        { 
-            title: req.body.title, 
-            content: req.body.content 
-        }, 
-        { where: { id: req.params.id } });
+    try {
+        await Poster.update(
+            {
+                title: req.body.title,
+                content: req.body.content
+            },
+            { where: { id: req.params.id } });
+        res.status(200).json({ message: "update success" });
+    } catch (error) {
+        res.status(500).json({ message: "Intenal error occurs" });
+        console.error("ERROR occurs while updating post\n", error);
+    }
 
 });
 

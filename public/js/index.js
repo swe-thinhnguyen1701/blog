@@ -82,11 +82,13 @@ const editPostHandler = async (event) => {
         const title = $("#new-post-title").val();
         const content = $("#new-post-content").val();
         const res = await $.ajax({
-            url: `/dashboard/post/${postId}`,
+            url: `/api/users/dashboard/post/${postId}`,
             method: "PUT",
             contentType: "application/json",
             data: JSON.stringify({title, content})
         });
+
+        if(res) window.location.replace("/dashboard");
     }catch(error){
 
     }
