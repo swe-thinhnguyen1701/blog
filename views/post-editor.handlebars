@@ -1,0 +1,25 @@
+<section>
+    <form id="edit-form" data-post-id="{{id}}">
+        <div class="section-container">
+            <div class="section-header">
+                <span>Edit Post</span>
+            </div>
+            <div class="section-body">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="new-post-title" name="title" class="input" value="{{title}}">
+                </div>
+                <div class="form-group">
+                    <label for="content">Content</label>
+                    <textarea name="content" id="new-post-content">{{content}}</textarea>
+                </div>
+                <div class="btn-container">
+                    <button class="btn" type="submit">Save</button>
+                </div>
+                <div class="btn-container">
+                    <button class="btn" id="delete-post-btn">Delete</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
