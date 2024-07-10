@@ -1,5 +1,5 @@
 <section>
-    <div class="poster-container" data-post-id="{{post.id}}">
+    <div class="poster-container" >
         <div class="poster-header">
             <span class="poster__title">{{post.title}}</span>
             <span class="poster__author">Posted by {{post.user.user_name}} 05/07/2024</span>
@@ -11,7 +11,7 @@
     {{#each comments as |comment|}}
     {{> comment-details}}
     {{/each}}
-    <form id="comment-form">
+    <form id="comment-form" data-post-id="{{post.id}}">
         <div class="form-group">
             <label for="comment">Your Comment</label>
             <textarea name="commend" id="comment" class="comment-area" placeholder="Write a comment..."></textarea>
