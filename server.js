@@ -26,7 +26,7 @@ app.use((req, res, next) => {
         req.session.loggedIn = false;
     // console.log("req.session.loggedIn :>> ", req.session.loggedIn);
     next();
-})
+});
 
 app.engine("handlebars", handlebars.engine);
 app.set("view engine", "handlebars");

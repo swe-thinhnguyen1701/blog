@@ -64,8 +64,9 @@ h3{
     text-decoration: underline;
 }
 
-.post-editor-link{
-    text-decoration: none;   
+.post-editor-link, .post-comment-link{
+    text-decoration: none;
+    color: var(--black-color);
 }
 
 /* BUTTON */

@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const auth = require("./middleware/auth");
-const { Poster, User } = require("../models");
+const { Poster, User, Comment } = require("../models");
 
 router.get("/", async (req, res) => {
     try {
@@ -36,7 +36,7 @@ router.get("/dashboard", auth, async (req, res) => {
     res.render("dashboard", { posters, loggedIn: req.session.loggedIn, isDashboard: true });
 });
 
-router.get("/dashboard/post/:id", async (req, res) => {
+router.get("/dashboard/post/:id", auth, async (req, res) => {
     try {
         const postData = await Poster.findByPk(req.params.id);
         if (!postData) {
@@ -49,6 +49,24 @@ router.get("/dashboard/post/:id", async (req, res) => {
         console.error("ERROR occurs while fetching data from dashboard/post/:id\n", error);
         res.send(500).json({ message: "Internal error occurs, please try again later" });
     }
+});
+
+router.get("/post/:id", auth, async (req, res) => {
+    const postData = await Poster.findOne({
+        where: {id: req.params.id},
+        include: [{ model: User, attributes: ["user_name"]}]
+    });
+    if(!postData) {
+        res.status(404).json({message: "Cannot find a post with given ID"});
+        return;
+    };
+    const commentData = await Comment.findAll({
+        where: {poster_id: req.params.id},
+        include: [{model: User, attributes: ["user_name"]}]
+    });
+    const comments = commentData.map(comment => comment.get({plain: true}));
+    const post = postData.get({plain: true});
+    res.render("post-comment", {post, comments});
 });
 
 module.exports = router;
