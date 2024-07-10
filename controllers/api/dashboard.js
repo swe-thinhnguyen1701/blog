@@ -1,8 +1,9 @@
 const router = require("express").Router();
-const { Poster } = require("../../models");
+const { Poster, Comment } = require("../../models");
 
 router.delete("/dashboard/post/:id", async (req, res) => {
     try {
+        await Comment.destroy({where: {poster_id: req.params.id}});
         await Poster.destroy({ where: { id: req.params.id } });
 
         res.status(200).json("Post has been removed");

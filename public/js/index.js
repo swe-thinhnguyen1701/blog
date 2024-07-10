@@ -5,6 +5,7 @@ const deletePostBtn = $("#delete-post-btn");
 const loginForm = $("#login-form");
 const postForm = $("#post-form");
 const signupForm = $("#signup-form");
+const commentForm = $("#comment-form")
 const editForm = $("#edit-form");
 const userNameInput = $("#usernameInput");
 const passwordInput = $("#passwordInput");
@@ -72,6 +73,20 @@ const newPostHandler = async (event) => {
     }catch(error){
         alert("failed to create a new post");
     }
+}
+
+const commentHandler = async (event) => {
+    event.preventDefault();
+    const poster_id = commentForm.data("postId");
+    const content = $("#comment-input").val();
+    const res = await $.ajax({
+        url: "/api/users/comment",
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({content, poster_id})
+    });
+    if(res) window.location.replace(`/post/${poster_id}`);
+
 }
 
 const editPostHandler = async (event) => {
@@ -147,3 +162,4 @@ loginForm.on("submit", login);
 postForm.on("submit", newPostHandler);
 signupForm.on("submit", signupHandler);
 editForm.on("submit", editPostHandler);
+commentForm.on("submit", commentHandler);
