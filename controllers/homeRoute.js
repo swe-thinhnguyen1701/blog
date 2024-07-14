@@ -8,6 +8,7 @@ router.get("/", async (req, res) => {
             include: [{ model: User, attributes: ["user_name"] }]
         });
         const posters = posterData.map(poster => poster.get({ plain: true }));
+        console.log(posters);
         res.render("homepage", { posters, loggedIn: req.session.loggedIn, isDashboard: false });
     } catch (error) {
         console.error("ERROR occurs while getting home page\n", error);
@@ -30,9 +31,8 @@ router.get("/signup", (req, res) => {
 router.get("/dashboard", auth, async (req, res) => {
     const user_id = req.session.user_id;
     const userData = await User.findOne({where: {id: user_id}, include: [{model: Poster}]});
+    console.log(userData);
     const posters = userData.posters.map(post => post.get({plain: true}));
-    // const userPost = userPostData.map(post => post.get({plain: true}));
-    console.log("postList :>>", posters);
     res.render("dashboard", { posters, loggedIn: req.session.loggedIn, isDashboard: true });
 });
 

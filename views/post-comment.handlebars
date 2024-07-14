@@ -2,7 +2,7 @@
     <div class="poster-container" >
         <div class="poster-header">
             <span class="poster__title">{{post.title}}</span>
-            <span class="poster__author">Posted by {{post.user.user_name}} 05/07/2024</span>
+            <span class="poster__author">Posted by {{post.user.user_name}} {{formatDate post.createdAt}}</span>
         </div>
         <div class="poster-body">
             <p>{{post.content}}</p>

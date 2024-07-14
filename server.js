@@ -3,14 +3,16 @@ const express = require("express");
 const session = require("express-session");
 const expressHandlebars = require("express-handlebars");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
+require("dotenv").config();
 
 const app = express();
 const routes = require("./controllers");
+const helpers = require("./utils/helpers");
 const sequelize = require("./config/connection");
-const handlebars = expressHandlebars.create({});
+const handlebars = expressHandlebars.create({helpers});
 
 const sess = {
-    secret: "test123",
+    secret: process.env.SECRET_KEY,
     cookie: {
         maxAge: 24 * 60 * 60 * 1000
     },
