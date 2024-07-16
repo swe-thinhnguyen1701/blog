@@ -139,4 +139,4 @@ Attributes:
 ## Contact
 Thinh Nguyen(Charles) - thinhtrung.nguyen1701@gmail.com or charles.nguyen1701@gmail.com
 
-Project Link: git@github.com:swe-thinhnguyen1701/poster-app.git
+Project Link: [git@github.com:swe-thinhnguyen1701/poster-app.git](https://github.com/swe-thinhnguyen1701/poster-app)
