@@ -44,7 +44,7 @@ router.get("/dashboard/post/:id", auth, async (req, res) => {
             return;
         }
         const post = postData.get({ plain: true });
-        res.render("post-editor", post);
+        res.render("post-editor", {post, loggedIn: true});
     } catch (error) {
         console.error("ERROR occurs while fetching data from dashboard/post/:id\n", error);
         res.send(500).json({ message: "Internal error occurs, please try again later" });
@@ -66,7 +66,7 @@ router.get("/post/:id", auth, async (req, res) => {
     });
     const comments = commentData.map(comment => comment.get({plain: true}));
     const post = postData.get({plain: true});
-    res.render("post-comment", {post, comments});
+    res.render("post-comment", {post, comments, loggedIn: true});
 });
 
 module.exports = router;

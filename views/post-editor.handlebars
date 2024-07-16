@@ -1,5 +1,5 @@
 <section>
-    <form id="edit-form" data-post-id="{{id}}">
+    <form id="edit-form" data-post-id="{{post.id}}">
         <div class="section-container">
             <div class="section-header">
                 <span>Edit Post</span>
@@ -7,11 +7,11 @@
             <div class="section-body">
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" id="new-post-title" name="title" class="input" value="{{title}}">
+                    <input type="text" id="new-post-title" name="title" class="input" value="{{post.title}}">
                 </div>
                 <div class="form-group">
                     <label for="content">Content</label>
-                    <textarea name="content" id="new-post-content">{{content}}</textarea>
+                    <textarea name="content" id="new-post-content">{{post.content}}</textarea>
                 </div>
                 <div class="btn-container">
                     <button class="btn" type="submit">Save</button>

@@ -17,15 +17,14 @@ const logout = async () => {
             method: "POST",
             contentType: "application/json",
             complete: (xhr, status) => {
-                if (xhr.status === 204) {
+                if (xhr.status === 204)
                     window.location.replace("/");
-                } else {
-                    alert("Failed to log out");
-                }
+            }, error: xhr => {
+                alert(xhr.responseJSON.message)
             }
         });
     } catch (error) {
-        alert("Failed to log out");
+        console.log("Failed to log out");
     }
 }
 
@@ -35,26 +34,28 @@ const login = async (event) => {
 
         const username = userNameInput.val();
         const password = passwordInput.val();
-        console.log("FRONT-END");
-        console.log("userName :>>", username);
-        console.log("password :>>", password);
-        const res = await $.ajax({
+        await $.ajax({
             url: "/api/users/login",
             method: "POST",
             contentType: "application/json",
-            data: JSON.stringify({ username, password })
+            data: JSON.stringify({ username, password }),
+            success: res => {
+                if (res) window.location.replace("/");
+            }, error: xhr => {
+                alert(xhr.responseJSON.message);
+                console.log(xhr);
+            }
         });
         userNameInput.val("");
         passwordInput.val("");
 
-        if (res) window.location.replace("/");
     } catch (error) {
-        alert("failed to log in");
+        console.log("failed to log in");
     }
 }
 
 const newPostHandler = async (event) => {
-    try{
+    try {
         event.preventDefault();
 
         const title = $("#new-post-title").val();
@@ -63,14 +64,14 @@ const newPostHandler = async (event) => {
             url: "/api/users/dashboard",
             method: "POST",
             contentType: "application/json",
-            data: JSON.stringify({ title, content})
+            data: JSON.stringify({ title, content })
         });
 
         $("#new-post-title").val("");
         $("#new-post-content").val("");
 
-        if(res) window.location.replace("/dashboard");
-    }catch(error){
+        if (res) window.location.replace("/dashboard");
+    } catch (error) {
         alert("failed to create a new post");
     }
 }
@@ -83,14 +84,14 @@ const commentHandler = async (event) => {
         url: "/api/users/comment",
         method: "POST",
         contentType: "application/json",
-        data: JSON.stringify({content, poster_id})
+        data: JSON.stringify({ content, poster_id })
     });
-    if(res) window.location.replace(`/post/${poster_id}`);
+    if (res) window.location.replace(`/post/${poster_id}`);
 
 }
 
 const editPostHandler = async (event) => {
-    try{
+    try {
         event.preventDefault();
 
         const postId = editForm.data("postId");
@@ -100,38 +101,46 @@ const editPostHandler = async (event) => {
             url: `/api/users/dashboard/post/${postId}`,
             method: "PUT",
             contentType: "application/json",
-            data: JSON.stringify({title, content})
+            data: JSON.stringify({ title, content })
         });
 
-        if(res) window.location.replace("/dashboard");
-    }catch(error){
+        if (res) window.location.replace("/dashboard");
+    } catch (error) {
 
     }
 }
 
 const signupHandler = async (event) => {
-    try{
+    try {
         event.preventDefault();
-        
+
         const username = userNameInput.val();
         const password = passwordInput.val();
         const res = await $.ajax({
             url: "/api/users/signup",
             method: "POST",
             contentType: "application/json",
-            data: JSON.stringify({ username, password})
+            data: JSON.stringify({ username, password }),
+            success: res => {
+                if (res) window.location.replace("/");
+            }, error: xhr => {
+                console.log(xhr);
+                alert(xhr.responseJSON.message);
+            }, complete: () => {
+                userNameInput.val("");
+                passwordInput.val("");  
+            }
         });
-        userNameInput.val("");
-        passwordInput.val("");
 
-        if(res) window.location.replace("/");
-    }catch(error){
-        alert("Sign Up Failed!");
+
+        if (res) window.location.replace("/");
+    } catch (error) {
+        console.log("Sign Up Failed!");
     }
 }
 
 const deletePostHandler = async () => {
-    try{
+    try {
         const postId = editForm.data("postId");
         const res = await $.ajax({
             url: `/api/users/dashboard/post/${postId}`,
@@ -139,8 +148,8 @@ const deletePostHandler = async () => {
             contentType: "application/json"
         });
 
-        if(res) window.location.replace("/dashboard");
-    }catch(error) {
+        if (res) window.location.replace("/dashboard");
+    } catch (error) {
         alert("Fail to delete");
     }
 }

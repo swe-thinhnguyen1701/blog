@@ -5,7 +5,7 @@ router.post("/signup", async (req, res) => {
     try {
         const isUserExist = await User.findOne({ where: { user_name: req.body.username } });
         if (isUserExist) {
-            res.status(400).json({ messge: "User has been used!" });
+            res.status(400).json({ message: "Username has been used!" });
             return;
         }
 
