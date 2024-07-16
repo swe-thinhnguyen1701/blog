@@ -3,16 +3,18 @@
 Poster App is a web application designed to allow users to create, view, and manage posters and comments. Users can sign up, log in, and access a personalized dashboard where they can create new posters, edit or delete their existing posters, and view comments on each poster.
 
 ## Features
-* Homepage: View all posters with associated user names.
-* Login & Signup: User authentication and registration.
-* Dashboard: Personalized dashboard where users can manage their posters.
-* Post Editor: Edit and delete existing posters.
-* Comments: Add comments to posters and view comments from others.
+* **Homepage:** View all posters with associated user names.
+* **Login & Signup:** User authentication and registration.
+* **Dashboard:** Personalized dashboard where users can manage their posters.
+* **Post Editor:** Edit and delete existing posters.
+* **Comments:** Add comments to posters and view comments from others.
+
 ## Installation
 ### Prerequisites
 Ensure you have the following installed on your machine:
 * Node.js
 * npm (Node Package Manager)
+
 ### Steps
 1. Clone the repository:
 ```
